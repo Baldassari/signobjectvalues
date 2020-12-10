@@ -33,14 +33,18 @@ eEnBDzcHGb60NnYmuWIqLB4=
 -----END PRIVATE KEY-----
 	`;
 
+const passphrase = "";
+
 const obj = {
-  transactionId: "lala",
-  clientId: "12312"
+  transactionId: "3426d898-15a0-426e-947a-aaa0576d9777",
+  clientId: "191923133123",
+  deviceId: "lalalae"
 }
 const signer = crypto.createSign("RSA-SHA256");
-signer.update(`${obj.transactionId}|${obj.clientId}`);
+const toSign = Object.values(obj).join('|');
+signer.update(toSign);
 
-obj.signature = signer.sign(pem, "base64");
+obj.signature = signer.sign({key:pem, passphrase: passphrase}, "base64");
 // Write Javascript code!
 const appDiv = document.getElementById('app');
 appDiv.innerHTML = JSON.stringify(obj);
