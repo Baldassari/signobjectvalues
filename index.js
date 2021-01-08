@@ -1,8 +1,8 @@
 // Import stylesheets
-import './style.css';
-import * as crypto from 'crypto'
+import "./style.css";
+import * as crypto from "crypto";
 
-	const pem = `
+const pem = `
 -----BEGIN PRIVATE KEY-----
 MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDeQJczjZ6NGoRJ
 EFr2Ai7VSjyeVli0lWqk8yzCdIecK3GmDKJHmEIIRhZ2lB/KJN9K2Hsri9CHndxA
@@ -36,15 +36,15 @@ eEnBDzcHGb60NnYmuWIqLB4=
 const passphrase = "";
 
 const obj = {
-  transactionId: "3426d898-15a0-426e-947a-aaa0576d9777",
+  transactionId: "7dde9e0b-6adc-418f-875c-8aeb5c178c7a",
   clientId: "1859500055664",
   deviceId: "lalalae"
-}
+};
 const signer = crypto.createSign("RSA-SHA256");
-const toSign = Object.values(obj).join('|');
+const toSign = Object.values(obj).join("|");
 signer.update(toSign);
 
-obj.signature = signer.sign({key:pem, passphrase: passphrase}, "base64");
+obj.signature = signer.sign({ key: pem, passphrase: passphrase }, "base64");
 // Write Javascript code!
-const appDiv = document.getElementById('app');
-appDiv.innerHTML = JSON.stringify(obj);
+const appDiv = document.getElementById("app");
+appDiv.innerHTML = JSON.stringify(obj, null, 4);
