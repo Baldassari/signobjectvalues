@@ -41,7 +41,7 @@ const obj = {
   deviceId: "lalalae"
 };
 const signer = crypto.createSign("RSA-SHA256");
-const toSign = Object.values(obj).join("|");
+const toSign = JSON.stringify(obj);
 signer.update(toSign);
 
 obj.signature = signer.sign({ key: pem, passphrase: passphrase }, "base64");
